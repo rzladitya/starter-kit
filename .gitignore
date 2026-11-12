@@ -1,0 +1,20 @@
+# Local agents / environment
+.env
+.env.*
+!.env.example
+.claude/settings.local.json
+.plannotator/
+
+# Generic editor / OS / build artifacts
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+node_modules/
+dist/
+build/
+coverage/
+__pycache__/
+.pytest_cache/
+.venv/
+*.log
