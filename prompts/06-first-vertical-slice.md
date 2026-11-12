@@ -1,6 +1,6 @@
 /pstack:poteto-mode
 
-IMPLEMENTATION PHASE. First inspect docs/DECISION_LOG.md and docs/STATUS.md. If there is no explicit APPROVED authorization for this bounded first slice, STOP and report the missing approval.
+SCAFFOLD + FIRST SLICE (phases 4–5). First inspect docs/DECISION_LOG.md and docs/STATUS.md. If there is no explicit APPROVED authorization for this bounded first slice, STOP and report the missing approval.
 
 After verifying approval:
 1. Read approved PRD/NFR/architecture/ADRs/constraints/implementation plan.

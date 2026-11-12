@@ -1,77 +1,153 @@
 # Architecture-first Starter Kit
-## Claude Code + Pstack + Plannotator — New Enterprise Project
 
-Paket siap salin untuk memulai *greenfield project* dengan PRD, NFR, desain arsitektur, approval manusia, lalu implementasi bertahap. **Bukan** aplikasi atau skeleton framework; stack dipilih setelah discovery dan disetujui.
+> **Claude Code + Pstack + Plannotator** untuk memulai *greenfield project* enterprise.
 
-## Quick start (5 langkah)
+Template dokumen dan prompt untuk membawa ide menjadi PRD, NFR, desain arsitektur, approval manusia, lalu implementasi bertahap.
 
-1. Ekstrak ZIP ini ke folder repository baru (atau salin isinya ke repo kosong).
-2. Jalankan:
-   ```bash
-   git init                 # jika belum di dalam repository Git
-   claude
-   ```
-3. Pastikan `pstack` telah diinstal di Claude Code. Jika belum, jalankan di Claude Code:
-   ```text
-   /plugin marketplace add cursor/plugins
-   /plugin install pstack@cursor-plugins
-   /pstack:setup-pstack
-   ```
-   Di Claude Code, Pstack memakai adapter: beberapa model Cursor dan fitur Cursor-only tidak tersedia. `setup-pstack` perlu memilih model yang benar-benar tersedia pada Claude Code.
-4. Pastikan Plannotator terpasang (opsional, tetapi direkomendasikan):
-   ```text
-   /plugin marketplace add backnotprop/plannotator
-   /plugin install plannotator@plannotator
-   ```
-   Restart Claude Code jika baru memasang plugin. Plan review Plannotator bekerja melalui hook **native Claude Code Plan Mode**. Untuk dokumen Markdown gunakan `/plannotator-annotate docs/PRD.md`; untuk uncommitted diff `/plannotator-review`.
-5. Isi ringkasan ide di `docs/PROJECT_BRIEF.md`, lalu salin prompt `prompts/01-discovery.md` ke Claude Code. Jalankan prompt berikutnya hanya setelah fase sebelumnya disetujui.
+**Ini bukan aplikasi atau skeleton framework.** Stack teknologi dipilih *setelah* discovery dan disetujui.
 
-> Jangan memasukkan *semua* prompt sekaligus. Jalankan satu fase, review artefak, catat keputusan, baru lanjut. Prompt di folder `prompts/` adalah pesan **user** untuk Claude Code; tidak perlu dipindahkan ke `CLAUDE.md`.
+---
 
-## Alur utama dan approval gates
+## Daftar isi
 
-| Fase | Output utama | Kriteria lolos | Reviewer |
-|---|---|---|---|
-| 0. Discovery | `PROJECT_BRIEF.md`, `PRD.md` | User, masalah, MVP, acceptance criteria jelas | Product owner |
-| 1. NFR & constraints | `NFR.md`, `CONSTRAINTS.md` | Kebutuhan keamanan, kinerja, RTO/RPO, data, compliance terisi atau dinyatakan TBD dengan owner | Tech lead / security |
-| 2. Architecture | `ARCHITECTURE.md`, `DATA_MODEL.md`, `adr/*` | Alternatif, tradeoff, risiko, deployment dan diagram terbaca | Architect |
-| 3. Threat model & implementation plan | `SECURITY_THREAT_MODEL.md`, `IMPLEMENTATION_PLAN.md` | Risiko tinggi punya mitigasi, rencana dipecah per vertical slice | Security / engineering |
-| 4. Plan approval | Plannotator review + `DECISION_LOG.md` | User mengonfirmasi **APPROVED** tertulis | Owner |
-| 5. Build & verify | Kode, tes, laporan CI, PR | Satu slice berjalan end-to-end; checks nyata dijalankan | Engineering / reviewer |
+- [Isi repository](#isi-repository)
+- [Quick start](#quick-start)
+- [Alur fase dan approval gate](#alur-fase-dan-approval-gate)
+- [Urutan prompt](#urutan-prompt)
+- [Source of truth](#source-of-truth)
+- [Safety dan operasional](#safety-dan-operasional)
+- [Referensi](#referensi)
 
-Lihat `docs/WORKFLOW.md` dan `docs/REVIEW_GATES.md` untuk instruksi rinci. Status awal dokumen adalah **DRAFT**, bukan approved.
+---
 
-## Urutan prompt siap pakai
+## Isi repository
 
-| File | Kapan digunakan |
+```text
+.
+├── CLAUDE.md                  # Instruksi agent project (ringkas, merujuk ke docs/)
+├── README.md
+├── docs/
+│   ├── STATUS.md              # Fase & status proyek saat ini — baca pertama
+│   ├── PROJECT_BRIEF.md       # Ringkasan ide awal
+│   ├── PRD.md                 # Kebutuhan produk
+│   ├── NFR.md                 # Kebutuhan nonfungsional
+│   ├── CONSTRAINTS.md         # Batasan teknis, deployment, compliance
+│   ├── ARCHITECTURE.md        # Desain arsitektur
+│   ├── DATA_MODEL.md          # Model data
+│   ├── SECURITY_THREAT_MODEL.md
+│   ├── IMPLEMENTATION_PLAN.md # Rencana per vertical slice
+│   ├── DECISION_LOG.md        # Catatan keputusan & approval
+│   ├── WORKFLOW.md            # Detail alur kerja per fase
+│   ├── REVIEW_GATES.md        # Checklist gate G0–G4
+│   └── adr/
+│       └── ADR-0001-template.md
+└── prompts/                   # Prompt per fase (01–08)
+```
+
+---
+
+## Quick start
+
+**1. Siapkan repository**
+
+```bash
+git clone https://github.com/rzladitya/starter-kit.git my-project
+cd my-project
+claude
+```
+
+> Atau salin isi kit ini ke repository kosong, lalu jalankan `git init` bila belum ada Git.
+
+**2. Pasang Pstack** (jalankan di dalam Claude Code)
+
+```text
+/plugin marketplace add cursor/plugins
+/plugin install pstack@cursor-plugins
+/pstack:setup-pstack
+```
+
+Di Claude Code, Pstack memakai *adapter*: beberapa model dan fitur Cursor-only tidak tersedia. Saat `setup-pstack`, pilih model yang benar-benar tersedia di Claude Code.
+
+**3. Pasang Plannotator** (opsional, direkomendasikan)
+
+```text
+/plugin marketplace add backnotprop/plannotator
+/plugin install plannotator@plannotator
+```
+
+Restart Claude Code setelah memasang plugin. Cara pakai:
+
+| Kebutuhan | Cara |
 |---|---|
-| `prompts/01-discovery.md` | Mulai dari ide tanpa menulis kode |
-| `prompts/02-nfr-and-constraints.md` | Kunci standar mutu dan kebutuhan nonfungsional |
-| `prompts/03-architecture.md` | Eksplorasi opsi, arsitektur & ADR |
-| `prompts/04-architecture-challenge.md` | Uji desain secara adversarial dan cek risiko |
-| `prompts/05-plan-approval.md` | Buat plan dan ajukan review via Plannotator |
-| `prompts/06-first-vertical-slice.md` | Scaffold minimal dan implementasi satu slice setelah approval |
-| `prompts/07-code-review.md` | Verifikasi, independent review, dan preview diff |
-| `prompts/08-continue-project.md` | Melanjutkan sprint/fitur berikutnya dengan konteks stabil |
+| Review plan implementasi | Native **Plan Mode** Claude Code (hook Plannotator terbuka otomatis) |
+| Review dokumen Markdown | `/plannotator-annotate docs/PRD.md` |
+| Review uncommitted diff | `/plannotator-review` |
 
-## Dokumen mana jadi source of truth?
+**4. Mulai discovery**
 
-- Kebutuhan: `docs/PRD.md`.
-- Kualitas dan batasan deployment: `docs/NFR.md` dan `docs/CONSTRAINTS.md`.
-- Keputusan struktur: `docs/ARCHITECTURE.md` dan `docs/adr/`.
-- Scope fase coding dan dependencies: `docs/IMPLEMENTATION_PLAN.md`.
-- Persetujuan, perubahan scope, serta pengecualian: `docs/DECISION_LOG.md`.
-- Instruksi agent project: `CLAUDE.md` (pendek, merujuk dokumen; jangan tempel semua skill Pstack di sini).
+Isi ringkasan ide di [`docs/PROJECT_BRIEF.md`](docs/PROJECT_BRIEF.md), lalu salin isi [`prompts/01-discovery.md`](prompts/01-discovery.md) ke Claude Code.
+
+> [!IMPORTANT]
+> Jangan menjalankan semua prompt sekaligus. Jalankan satu fase → review artefak → catat keputusan → baru lanjut.
+> Prompt di `prompts/` adalah pesan **user** untuk Claude Code; tidak perlu dipindahkan ke `CLAUDE.md`.
+
+---
+
+## Alur fase dan approval gate
+
+| Fase | Output utama | Kriteria lolos | Gate | Reviewer |
+|---|---|---|---|---|
+| **0. Discover** | `PROJECT_BRIEF.md`, `PRD.md` | User, masalah, MVP, dan acceptance criteria jelas; owner mengesahkan scope | G0 | Product owner |
+| **1. Constrain** | `NFR.md`, `CONSTRAINTS.md` | Keamanan, kinerja, RTO/RPO, data, compliance terisi atau TBD dengan owner | G1 | Tech lead / security |
+| **2. Design** | `ARCHITECTURE.md`, `DATA_MODEL.md`, `adr/*` | Alternatif, trade-off, risiko, deployment, dan diagram terbaca; ADR berstatus Accepted | G2 | Architect |
+| **3. Risk & Plan** | `SECURITY_THREAT_MODEL.md`, `IMPLEMENTATION_PLAN.md`, `DECISION_LOG.md` | Risiko tinggi punya mitigasi; plan per vertical slice di-review via Plannotator; owner mencatat **APPROVED** tertulis | G3 | Security / engineering / owner |
+| **4. Scaffold** | Project files, test harness, fondasi CI | Inisialisasi minimal setelah approval; build & smoke test benar-benar jalan | — | Engineering |
+| **5. First slice** | Kode, tes, docs, laporan CI, PR | Satu slice berjalan end-to-end; checks nyata dijalankan; independent review + Plannotator | G4 | Engineering / reviewer |
+
+Semua dokumen berstatus awal **DRAFT**, bukan approved. Penomoran fase mengacu ke [`docs/WORKFLOW.md`](docs/WORKFLOW.md); checklist gate ada di [`docs/REVIEW_GATES.md`](docs/REVIEW_GATES.md).
+
+---
+
+## Urutan prompt
+
+| # | File | Kapan digunakan |
+|---|---|---|
+| 01 | [`01-discovery.md`](prompts/01-discovery.md) | Mulai dari ide, tanpa menulis kode |
+| 02 | [`02-nfr-and-constraints.md`](prompts/02-nfr-and-constraints.md) | Kunci standar mutu dan kebutuhan nonfungsional |
+| 03 | [`03-architecture.md`](prompts/03-architecture.md) | Eksplorasi opsi, arsitektur, dan ADR |
+| 04 | [`04-architecture-challenge.md`](prompts/04-architecture-challenge.md) | Uji desain secara adversarial dan cek risiko |
+| 05 | [`05-plan-approval.md`](prompts/05-plan-approval.md) | Buat plan dan ajukan review via Plannotator |
+| 06 | [`06-first-vertical-slice.md`](prompts/06-first-vertical-slice.md) | Scaffold minimal dan satu slice setelah approval |
+| 07 | [`07-code-review.md`](prompts/07-code-review.md) | Verifikasi, independent review, dan preview diff |
+| 08 | [`08-continue-project.md`](prompts/08-continue-project.md) | Lanjut ke sprint/fitur berikutnya dengan konteks stabil |
+
+---
+
+## Source of truth
+
+| Topik | Dokumen |
+|---|---|
+| Kebutuhan produk | [`docs/PRD.md`](docs/PRD.md) |
+| Kualitas & batasan deployment | [`docs/NFR.md`](docs/NFR.md), [`docs/CONSTRAINTS.md`](docs/CONSTRAINTS.md) |
+| Keputusan struktur | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md), [`docs/adr/`](docs/adr/) |
+| Scope coding & dependencies | [`docs/IMPLEMENTATION_PLAN.md`](docs/IMPLEMENTATION_PLAN.md) |
+| Persetujuan, perubahan scope, pengecualian | [`docs/DECISION_LOG.md`](docs/DECISION_LOG.md) |
+| Instruksi agent | [`CLAUDE.md`](CLAUDE.md) — tetap ringkas; jangan tempel semua skill Pstack di sini |
+
+---
 
 ## Safety dan operasional
 
-- Tidak mengklaim check 'PASS' bila perintahnya belum dijalankan; tulis `NOT RUN` beserta alasannya.
-- Plannotator memberikan **human review**, bukan bukti bahwa tests, security, atau CI telah lulus.
-- Jangan mengaktifkan `autopilot-full`, auto-merge, deploy produksi, atau migrasi destruktif selama fase discovery dan desain.
-- Pada project perusahaan, review kebijakan provider AI dan penggunaan informasi sensitif; nonaktifkan fitur share Plannotator bila diperlukan: `PLANNOTATOR_SHARE=disabled`.
-- Tentukan runtime checks setelah bahasa/framework dipilih; jangan menyalin perintah lint/test fiktif.
+- **Tidak ada klaim palsu.** Jangan menulis `PASS` bila check belum dijalankan; tulis `NOT RUN` beserta alasannya.
+- **Approval ≠ verifikasi.** Plannotator adalah *human review*, bukan bukti bahwa tests, security, atau CI lulus.
+- **Tanpa otomatisasi berisiko di fase awal.** Jangan aktifkan `autopilot-full`, auto-merge, deploy produksi, atau migrasi destruktif selama discovery dan desain.
+- **Data sensitif.** Untuk project perusahaan, tinjau kebijakan provider AI. Nonaktifkan fitur share Plannotator bila perlu: `PLANNOTATOR_SHARE=disabled`.
+- **Checks nyata.** Tentukan perintah lint/test setelah bahasa/framework dipilih; jangan menyalin perintah fiktif.
 
-## Dokumentasi resmi
-- Pstack: https://github.com/cursor/plugins/tree/main/pstack
-- Pstack di Claude Code: https://github.com/cursor/plugins/blob/main/pstack/docs/harness/claude-code.md
-- Plannotator: https://github.com/backnotprop/plannotator
+---
+
+## Referensi
+
+- [Pstack](https://github.com/cursor/plugins/tree/main/pstack)
+- [Pstack di Claude Code](https://github.com/cursor/plugins/blob/main/pstack/docs/harness/claude-code.md)
+- [Plannotator](https://github.com/backnotprop/plannotator)

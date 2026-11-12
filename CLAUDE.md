@@ -15,9 +15,11 @@ If sources conflict, **surface the conflict**. Do not quietly invent requirement
 - **Discovery (phase 0):** No application code, framework install, or infrastructure changes. Produce and refine brief/PRD.
 - **Constraints (phase 1):** Define measurable NFRs, threat assumptions, quality gates, and unresolved owners.
 - **Architecture (phase 2):** Compare viable options with trade-offs; produce boundaries, data flow, and ADRs. Prototype only if explicitly approved, isolated, and disposable.
-- **Approval (phase 3):** Offer an implementation plan for human review. Use native Claude Code Plan Mode when appropriate so Plannotator can review via its hook. For existing Markdown plans, ask the operator to run `/plannotator-annotate <path>` if needed. A saved document alone does **not** fire the native plan hook.
-- **Implementation (phase 4):** Require explicit recorded authorization in `docs/DECISION_LOG.md` before scaffolding production app, adding dependencies, or changing data schemas. Implement a single smallest end-to-end slice first.
-- **Verification (phase 5):** Run relevant automated checks, inspect actual artifacts and diff, report evidence. For important changes use independent review, then Plannotator diff review before PR/merge.
+- **Risk & Plan (phase 3):** Produce the threat model and implementation plan, then offer the plan for human review. Use native Claude Code Plan Mode when appropriate so Plannotator can review via its hook. For existing Markdown plans, ask the operator to run `/plannotator-annotate <path>` if needed. A saved document alone does **not** fire the native plan hook. Gate G3: human approval recorded in `docs/DECISION_LOG.md`.
+- **Scaffold (phase 4):** Require explicit recorded authorization in `docs/DECISION_LOG.md` before scaffolding production app, adding dependencies, or changing data schemas. Keep initialization minimal (project files, test harness, CI foundation); build and smoke test must actually run.
+- **First slice (phase 5):** Implement a single smallest end-to-end slice. Run relevant automated checks, inspect actual artifacts and diff, report evidence. For important changes use independent review, then Plannotator diff review before PR/merge.
+
+Phase numbering follows `docs/WORKFLOW.md`; keep README, STATUS and this file aligned with it.
 
 ## Engineering rules
 1. State assumptions, risks, and unknowns. Mark unknown items `TBD (owner: ..., target date: ...)`; no fabricated facts.
