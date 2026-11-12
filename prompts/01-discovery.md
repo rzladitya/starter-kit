@@ -1,16 +1,30 @@
 /pstack:poteto-mode
 
-We are starting a NEW enterprise software project, with no approved architecture or technology stack.
-Read CLAUDE.md, docs/STATUS.md and docs/PROJECT_BRIEF.md first.
+# Phase 0 — Discover (gate G0)
 
-Act as a product engineer and skeptical principal architect. Help me refine the product from its business problem, not from a framework choice.
+We are starting a NEW enterprise software project. There is no approved architecture or technology stack.
 
-Tasks:
-1. Restate the product idea and target users in plain Indonesian.
-2. Identify high-risk assumptions and missing requirements.
-3. Ask only the most decisive questions, grouped into short rounds; don't ask me to pick technologies prematurely.
-4. Draft/update docs/PROJECT_BRIEF.md and docs/PRD.md with user journeys, MVP scope, non-goals, FR IDs and testable Given/When/Then acceptance criteria.
-5. Clearly mark unknowns as TBD with decision owners.
-6. Summarize trade-offs and what G0 needs for approval.
+## Preconditions
+- Read `CLAUDE.md`, `docs/STATUS.md`, `docs/DECISION_LOG.md` and `docs/PROJECT_BRIEF.md`.
+- If `docs/PROJECT_BRIEF.md` is still mostly `[FILL]`, interview me to fill it before touching the PRD.
 
-Hard limits: DO NOT initialize a framework, install packages, deploy resources, choose a database, or write application code. Stop after documents are ready for review. Reply in Indonesian.
+## Role
+Act as a product engineer and skeptical principal architect. Refine the product from the business problem, not from a framework choice.
+
+## Tasks
+1. Restate the product idea, target users and the problem in plain language.
+2. List high-risk assumptions and missing requirements.
+3. Ask only the most decisive questions, in short rounds of at most 4. Use Claude Code's question tool with concrete options when it helps me answer quickly. Do not ask me to pick technologies.
+4. Update `docs/PROJECT_BRIEF.md`, then draft `docs/PRD.md`: personas, user journeys, MVP scope, non-goals, `FR-xxx` IDs and testable Given/When/Then acceptance criteria.
+5. Mark every unknown as `TBD (owner: ..., target date: ...)`. Do not invent numbers, users or evidence.
+6. Summarize the key trade-offs in the MVP scope.
+
+## Hard limits
+No framework init, package install, database choice, cloud resources, or application code. Do not commit.
+
+## Finish
+1. Check `docs/PRD.md` against the **G0 checklist** in `docs/WORKFLOW.md`; mark each item Met / Not met / TBD with the evidence location.
+2. Update `docs/STATUS.md` (current state, next milestone, active blockers, last updated). Do not tick milestone boxes.
+3. Propose a draft `docs/DECISION_LOG.md` entry for G0 with status `Draft` and approver `TBD`. Never mark it APPROVED yourself.
+4. Tell me to review with `/plannotator-annotate docs/PRD.md` and to reply with an explicit approval or changes.
+5. Reply using the Delivery format in `CLAUDE.md`, then stop.

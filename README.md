@@ -96,7 +96,7 @@ Fill in the idea summary in [`docs/PROJECT_BRIEF.md`](docs/PROJECT_BRIEF.md), th
 > The files in `prompts/` are **user** messages for Claude Code; do not move them into `CLAUDE.md`.
 
 > [!NOTE]
-> Documents are in English. The agent replies in Indonesian by default; change the *Delivery format* section in `CLAUDE.md` and the "Reply in Indonesian" lines in `prompts/` to switch.
+> Documents are in English. The agent replies in Indonesian by default; change the *Delivery format* section in `CLAUDE.md` to switch (all prompts follow it).
 
 ---
 
@@ -117,16 +117,21 @@ Every document starts as **DRAFT**, not approved. Phase numbering and the G0–G
 
 ## Prompt sequence
 
-| # | File | When to use |
-|---|---|---|
-| 01 | [`01-discovery.md`](prompts/01-discovery.md) | Start from the idea, no code |
-| 02 | [`02-nfr-and-constraints.md`](prompts/02-nfr-and-constraints.md) | Lock quality standards and non-functional requirements |
-| 03 | [`03-architecture.md`](prompts/03-architecture.md) | Explore options, architecture and ADRs |
-| 04 | [`04-architecture-challenge.md`](prompts/04-architecture-challenge.md) | Adversarial design review and risk check |
-| 05 | [`05-plan-approval.md`](prompts/05-plan-approval.md) | Write the plan and submit it for Plannotator review |
-| 06 | [`06-first-vertical-slice.md`](prompts/06-first-vertical-slice.md) | Minimal scaffold and one slice, after approval |
-| 07 | [`07-code-review.md`](prompts/07-code-review.md) | Verification, independent review and diff review |
-| 08 | [`08-continue-project.md`](prompts/08-continue-project.md) | Continue with the next sprint/feature on stable context |
+| # | File | Phase / gate | Requires approved | When to use |
+|---|---|---|---|---|
+| 01 | [`01-discovery.md`](prompts/01-discovery.md) | 0 / G0 | — | Start from the idea, no code |
+| 02 | [`02-nfr-and-constraints.md`](prompts/02-nfr-and-constraints.md) | 1 / G1 | G0 | Lock quality standards and non-functional requirements |
+| 03 | [`03-architecture.md`](prompts/03-architecture.md) | 2 / G2 | G0, G1 | Explore options, architecture and ADRs |
+| 04 | [`04-architecture-challenge.md`](prompts/04-architecture-challenge.md) | 2→3 | G0, G1 | Adversarial design review + threat model, before approving G2 |
+| 05 | [`05-plan-approval.md`](prompts/05-plan-approval.md) | 3 / G3 | G0–G2 | Write the plan; review via Plan Mode + Plannotator |
+| 06 | [`06-first-vertical-slice.md`](prompts/06-first-vertical-slice.md) | 4–5 | G3 | Minimal scaffold (checkpoint), then the first slice |
+| 07 | [`07-code-review.md`](prompts/07-code-review.md) | 5 / G4 | G3 | Real checks, independent review, diff review, GO/HOLD |
+| 08 | [`08-continue-project.md`](prompts/08-continue-project.md) | 5 (repeat) | slice approval | Continue with the next slice in a new session |
+
+How to use a prompt:
+- Paste the whole file into Claude Code. Every prompt checks the required gates in `docs/DECISION_LOG.md` first and stops if an approval is missing.
+- Every prompt ends the same way: gate checklist from `docs/WORKFLOW.md`, `docs/STATUS.md` update, a **draft** decision-log entry, and the *Delivery format* from `CLAUDE.md`. Only you can turn a draft into APPROVED.
+- The first line `/pstack:poteto-mode` is optional; remove it to run the prompt without Pstack.
 
 ---
 

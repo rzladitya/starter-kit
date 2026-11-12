@@ -10,7 +10,7 @@
 ```text
 ID: D-001
 Date: YYYY-MM-DD
-Phase: 0 / 1 / 2 / 3 / 4
+Phase: 0 / 1 / 2 / 3 / 4 / 5 (see docs/WORKFLOW.md)
 Decision: Approve PRD vX.Y (or architecture, implementation, explicit code change)
 Scope authorized: [clear boundaries]
 Artifacts reviewed: [file paths + versions/commit]
