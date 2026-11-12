@@ -1,39 +1,39 @@
 # Project Brief
 
 **Status:** DRAFT  
-**Product name:** [ISI]  
-**Product owner:** [ISI]  
+**Product name:** [FILL]  
+**Product owner:** [FILL]  
 **Date:** [YYYY-MM-DD]
 
 ## 1. One-sentence vision
-[Produk ini membantu SIAPA melakukan APA sehingga HASIL terukur tercapai.]
+[This product helps WHO do WHAT so that a MEASURABLE OUTCOME is achieved.]
 
-## 2. Masalah dan bukti
-| Masalah | Saat ini pengguna mengatasi dengan | Dampak bisnis | Bukti / sumber |
+## 2. Problems and evidence
+| Problem | How users cope today | Business impact | Evidence / source |
 |---|---|---|---|
-| [ISI] | [ISI] | [ISI] | [ISI] |
+| [FILL] | [FILL] | [FILL] | [FILL] |
 
-## 3. Target pengguna
-- Primary persona: [role, pekerjaan, akses, target].
-- Secondary persona: [opsional].
-- Stakeholder dan pengambil keputusan: [ISI].
+## 3. Target users
+- Primary persona: [role, job, access, goal].
+- Secondary persona: [optional].
+- Stakeholders and decision makers: [FILL].
 
-## 4. Batasan awal
-- Go-live window: [ISI/TBD].
-- Estimasi budget: [ISI/TBD].
-- Geographic / data residency: [ISI/TBD].
-- On-prem / cloud / hybrid preference: [ISI/TBD].
-- Constraints organisasi: [compliance, vendor, offline, integrasi] atau TBD.
+## 4. Initial constraints
+- Go-live window: [FILL/TBD].
+- Budget estimate: [FILL/TBD].
+- Geographic / data residency: [FILL/TBD].
+- On-prem / cloud / hybrid preference: [FILL/TBD].
+- Organizational constraints: [compliance, vendor, offline, integrations] or TBD.
 
-## 5. MVP must-have (maksimal 3-5 user outcomes)
-1. [Outcome yang bisa didemokan dan diuji].
-2. [ISI].
-3. [ISI].
+## 5. MVP must-have (3–5 user outcomes max)
+1. [An outcome that can be demoed and tested].
+2. [FILL].
+3. [FILL].
 
 ## 6. Explicit non-goals
-- [Hal yang sengaja tidak dikerjakan pada MVP].
+- [Things deliberately excluded from the MVP].
 
 ## 7. Open questions
-| Pertanyaan | Mengapa penting | Owner | Batas keputusan |
+| Question | Why it matters | Owner | Decision deadline |
 |---|---|---|---|
-| [ISI] | [ISI] | [ISI] | [ISI] |
+| [FILL] | [FILL] | [FILL] | [FILL] |

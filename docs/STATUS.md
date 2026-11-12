@@ -1,10 +1,10 @@
 # Project Status
 
-**Project name:** [ISI]  
+**Project name:** [FILL]  
 **Current phase:** 0 — Discovery  
 **Current state:** DRAFT (not approved)  
 **Next milestone:** Product brief + initial PRD  
-**Decision owner:** [ISI]  
+**Decision owner:** [FILL]  
 **Last updated:** [YYYY-MM-DD]
 
 ## Milestone checklist
@@ -18,6 +18,6 @@
 ## Active blockers / TBD
 | Item | Owner | Next action | Due |
 |---|---|---|---|
-| Product brief | [ISI] | Isi target user dan problem | [ISI] |
+| Product brief | [FILL] | Fill in target users and problem | [FILL] |
 
-> Jangan mengubah checklist menjadi selesai tanpa evidence/link dan catatan persetujuan pada DECISION_LOG.md.
+> Do not tick a checklist item without evidence/link and an approval record in DECISION_LOG.md.

@@ -1,13 +1,13 @@
 # Domain and Data Model
 
 **Status:** DRAFT  
-**Owner:** [ISI]  
+**Owner:** [FILL]  
 **Related architecture:** `ARCHITECTURE.md`
 
 ## Domain glossary
 | Domain term | Definition | Invariant | Owner |
 |---|---|---|---|
-| [ISI] | [ISI] | [ISI] | [ISI] |
+| [FILL] | [FILL] | [FILL] | [FILL] |
 
 ## Entities and relationships
 ```mermaid
@@ -21,21 +21,21 @@ erDiagram
         string entity_a_id
     }
 ```
-> Ilustrasi placeholder — replace with real entities before approval.
+> Placeholder illustration — replace with real entities before approval.
 
 ## Data ownership
 | Data category | Source of truth | Writer | Reader | Classification |
 |---|---|---|---|---|
-| [ISI] | [ISI] | [ISI] | [ISI] | [ISI] |
+| [FILL] | [FILL] | [FILL] | [FILL] | [FILL] |
 
 ## Interface contracts
 - API/command/event examples: [Path or schema].
-- Validation and typed errors: [ISI].
-- Idempotency key/duplicate handling: [ISI].
-- API evolution and compatibility: [ISI].
+- Validation and typed errors: [FILL].
+- Idempotency key/duplicate handling: [FILL].
+- API evolution and compatibility: [FILL].
 
 ## Storage lifecycle
-- Retention/deletion: [ISI].
-- Index and access pattern assumptions: [ISI].
-- Migration & rollback: [ISI].
-- Personal data handling: [ISI].
+- Retention/deletion: [FILL].
+- Index and access pattern assumptions: [FILL].
+- Migration & rollback: [FILL].
+- Personal data handling: [FILL].

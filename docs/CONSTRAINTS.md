@@ -1,7 +1,7 @@
 # Engineering Constraints (Quality Contract)
 
 **Status:** DRAFT  
-**Owner:** [ISI]  
+**Owner:** [FILL]  
 **Stack:** TBD until architecture approval
 
 ## Non-negotiable floor
@@ -15,16 +15,16 @@
 ## Measurable checks — fill after stack is selected
 | Dimension | Enforced threshold | Actual command | When | Owner |
 |---|---|---|---|---|
-| Typecheck | [TBD] | [TBD] | edit/task | [ISI] |
-| Lint/format | [TBD] | [TBD] | edit/CI | [ISI] |
-| Unit tests | [TBD] | [TBD] | task/CI | [ISI] |
-| Integration tests | [TBD] | [TBD] | PR/CI | [ISI] |
-| Secret scanning | [TBD] | [TBD] | PR/CI | [ISI] |
-| Dependency vulnerability scan | [TBD] | [TBD] | PR/CI | [ISI] |
-| Security/static analysis | [TBD] | [TBD] | PR/CI | [ISI] |
-| API/schema contract test | [TBD if relevant] | [TBD] | PR/CI | [ISI] |
-| Performance/load | [TBD with baseline] | [TBD] | staging/release | [ISI] |
-| Backup/restore drill | [TBD if relevant] | [TBD] | release | [ISI] |
+| Typecheck | [TBD] | [TBD] | edit/task | [FILL] |
+| Lint/format | [TBD] | [TBD] | edit/CI | [FILL] |
+| Unit tests | [TBD] | [TBD] | task/CI | [FILL] |
+| Integration tests | [TBD] | [TBD] | PR/CI | [FILL] |
+| Secret scanning | [TBD] | [TBD] | PR/CI | [FILL] |
+| Dependency vulnerability scan | [TBD] | [TBD] | PR/CI | [FILL] |
+| Security/static analysis | [TBD] | [TBD] | PR/CI | [FILL] |
+| API/schema contract test | [TBD if relevant] | [TBD] | PR/CI | [FILL] |
+| Performance/load | [TBD with baseline] | [TBD] | staging/release | [FILL] |
+| Backup/restore drill | [TBD if relevant] | [TBD] | release | [FILL] |
 
 > Never mark a check 'enforced' until a real command has been tested to fail on a known violation and pass on a clean control. Prefer diff-scoped fast checks and fuller CI gates.
 

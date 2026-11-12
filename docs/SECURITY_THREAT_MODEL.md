@@ -1,7 +1,7 @@
 # Security & Threat Model
 
 **Status:** DRAFT  
-**Reviewer:** [ISI]
+**Reviewer:** [FILL]
 
 ## Assets & actors
 - Critical assets: [data, credentials, money, business actions].
@@ -13,9 +13,9 @@ Link threat model to `ARCHITECTURE.md` component/data-flow diagram.
 
 | ID | Threat / abuse case | Entry point | Impact | Likelihood | Control | Verification | Owner |
 |---|---|---|---|---|---|---|---|
-| TH-001 | Unauthorized access | [ISI] | [ISI] | [ISI] | [ISI] | [Test] | [ISI] |
-| TH-002 | Sensitive data leakage | [ISI] | [ISI] | [ISI] | [ISI] | [Test] | [ISI] |
-| TH-003 | Dependency / supply chain risk | [ISI] | [ISI] | [ISI] | [ISI] | [Scan] | [ISI] |
+| TH-001 | Unauthorized access | [FILL] | [FILL] | [FILL] | [FILL] | [Test] | [FILL] |
+| TH-002 | Sensitive data leakage | [FILL] | [FILL] | [FILL] | [FILL] | [Test] | [FILL] |
+| TH-003 | Dependency / supply chain risk | [FILL] | [FILL] | [FILL] | [FILL] | [Scan] | [FILL] |
 
 ## Core controls to decide
 - Authentication, authorization, RBAC/ABAC, tenant isolation as applicable.

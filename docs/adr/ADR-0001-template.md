@@ -2,7 +2,7 @@
 
 **Status:** Proposed  
 **Date:** [YYYY-MM-DD]  
-**Decision makers:** [ISI]
+**Decision makers:** [FILL]
 
 ## Context
 [Business and technical constraints that make a decision necessary. Link PRD/NFR.]
@@ -13,13 +13,13 @@
 ## Alternatives considered
 | Option | Strengths | Weaknesses | Evidence |
 |---|---|---|---|
-| A | [ISI] | [ISI] | [Proof] |
-| B | [ISI] | [ISI] | [Proof] |
+| A | [FILL] | [FILL] | [Proof] |
+| B | [FILL] | [FILL] | [Proof] |
 
 ## Consequences
-- Positive: [ISI].
-- Negative / trade-offs: [ISI].
-- Operational / security effects: [ISI].
+- Positive: [FILL].
+- Negative / trade-offs: [FILL].
+- Operational / security effects: [FILL].
 
 ## Validation & reversal strategy
 [Prototype/benchmark/PoC and criteria that would reverse the decision.]
