@@ -1,6 +1,8 @@
 # Domain and Data Model
 
-**Status:** DRAFT
+**Status:** DRAFT  
+**Owner:** [ISI]  
+**Related architecture:** `ARCHITECTURE.md`
 
 ## Domain glossary
 | Domain term | Definition | Invariant | Owner |

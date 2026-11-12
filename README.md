@@ -27,20 +27,24 @@ Template dokumen dan prompt untuk membawa ide menjadi PRD, NFR, desain arsitektu
 ├── CLAUDE.md                  # Instruksi agent project (ringkas, merujuk ke docs/)
 ├── README.md
 ├── docs/
-│   ├── STATUS.md              # Fase & status proyek saat ini — baca pertama
-│   ├── PROJECT_BRIEF.md       # Ringkasan ide awal
-│   ├── PRD.md                 # Kebutuhan produk
-│   ├── NFR.md                 # Kebutuhan nonfungsional
-│   ├── CONSTRAINTS.md         # Batasan teknis, deployment, compliance
+│   │   # — Kontrol proyek (dipakai di semua fase)
+│   ├── STATUS.md              # Fase & status saat ini — baca pertama
+│   ├── DECISION_LOG.md        # Catatan keputusan & approval manusia
+│   ├── WORKFLOW.md            # Acuan fase 0–5 + checklist gate G0–G4
+│   │   # — Fase 0: Discover
+│   ├── PROJECT_BRIEF.md       # Ringkasan ide (diisi owner)
+│   ├── PRD.md                 # Kebutuhan produk (disusun bersama agent)
+│   │   # — Fase 1: Constrain
+│   ├── NFR.md                 # Target kualitas produk (SLO, RTO/RPO, privasi)
+│   ├── CONSTRAINTS.md         # Kontrak mutu engineering & perintah check
+│   │   # — Fase 2: Design
 │   ├── ARCHITECTURE.md        # Desain arsitektur
-│   ├── DATA_MODEL.md          # Model data
+│   ├── DATA_MODEL.md          # Domain, entitas, kontrak data
+│   ├── adr/
+│   │   └── ADR-0001-template.md
+│   │   # — Fase 3: Risk & Plan
 │   ├── SECURITY_THREAT_MODEL.md
-│   ├── IMPLEMENTATION_PLAN.md # Rencana per vertical slice
-│   ├── DECISION_LOG.md        # Catatan keputusan & approval
-│   ├── WORKFLOW.md            # Detail alur kerja per fase
-│   ├── REVIEW_GATES.md        # Checklist gate G0–G4
-│   └── adr/
-│       └── ADR-0001-template.md
+│   └── IMPLEMENTATION_PLAN.md # Rencana per vertical slice
 └── prompts/                   # Prompt per fase (01–08)
 ```
 
@@ -104,7 +108,7 @@ Isi ringkasan ide di [`docs/PROJECT_BRIEF.md`](docs/PROJECT_BRIEF.md), lalu sali
 | **4. Scaffold** | Project files, test harness, fondasi CI | Inisialisasi minimal setelah approval; build & smoke test benar-benar jalan | — | Engineering |
 | **5. First slice** | Kode, tes, docs, laporan CI, PR | Satu slice berjalan end-to-end; checks nyata dijalankan; independent review + Plannotator | G4 | Engineering / reviewer |
 
-Semua dokumen berstatus awal **DRAFT**, bukan approved. Penomoran fase mengacu ke [`docs/WORKFLOW.md`](docs/WORKFLOW.md); checklist gate ada di [`docs/REVIEW_GATES.md`](docs/REVIEW_GATES.md).
+Semua dokumen berstatus awal **DRAFT**, bukan approved. Penomoran fase dan checklist gate G0–G4 mengacu ke [`docs/WORKFLOW.md`](docs/WORKFLOW.md).
 
 ---
 
